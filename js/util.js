@@ -1,4 +1,4 @@
-import {MESSAGE} from "./data";
+import {MESSAGE} from "./data.js";
 
 // Функция для генерации случаного числа в заданном диапазоне
 const getRandomInteger = (a, b) => {

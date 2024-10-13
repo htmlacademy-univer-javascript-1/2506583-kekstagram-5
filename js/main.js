@@ -1,6 +1,6 @@
-import "./js/util.js"
-import "./js/data.js"
-import {iteratePosts} from "./js/generate-photo.js"
+import "./util.js"
+import "./data.js"
+import {iteratePosts} from "./generate-photo.js"
 
 console.log(
   iteratePosts

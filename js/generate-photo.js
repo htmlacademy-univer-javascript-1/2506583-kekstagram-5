@@ -1,5 +1,5 @@
-import  {getRandomInteger, getRandomMessage} from "./js/util.js"
-import {NAMES} from "./data";
+import  {getRandomInteger, getRandomMessage} from "./util.js"
+import {NAMES} from "./data.js";
 
 
 let idSet = new Set();
