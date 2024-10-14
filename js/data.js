@@ -20,29 +20,45 @@ const MESSAGE = [
 ];
 
 // Функция для генерации случаного 1 или 2 сообщений
-function getRandomMessage(){
+function getRandomMessage() {
+  // Генерация случайного числа от 1 до 2
   const countMessage = getRandomInteger(1, 2);
-  return countMessage === 2 ? MESSAGE[getRandomInteger(0, MESSAGE.length - 1)] + ' ' +
-  MESSAGE[getRandomInteger(0, MESSAGE.length - 1)] : MESSAGE[getRandomInteger(0, MESSAGE.length - 1)];
+
+  let message;
+  if (countMessage === 2) {
+      const firstIndex = getRandomInteger(0, MESSAGE.length - 1);
+      const secondIndex = getRandomInteger(0, MESSAGE.length - 1);
+
+      if (firstIndex !== secondIndex) {
+          message = `${MESSAGE[firstIndex]} ${MESSAGE[secondIndex]}`;
+      } else {
+          message = MESSAGE[firstIndex];
+      }
+  } else {
+      const index = getRandomInteger(0, MESSAGE.length - 1);
+      message = MESSAGE[index];
+  }
+
+  return message;
 }
 
 
 const idSet = new Set();
-const photoIdSet = new Set();
+//const photoIdSet = new Set();
 
 function getComment(){
   const idParam = getRandomInteger(1, 10000);
   const photoIdParam = getRandomInteger(1, 6);
   while(idSet.has(idParam)){
-     idParam = getRandomInteger(1, 10000);
+    idParam = getRandomInteger(1, 10000);
   }
   while(idSet.has(photoIdParam)){
-     photoIdParam = getRandomInteger(1, 6);
+    photoIdParam = getRandomInteger(1, 6);
   }
 
   return {
     id:  getRandomInteger(1, 10000) ,
-    avatar: 'img/avatar-${getRandomInteger(1, 6)}.svg',
+    avatar: `img/avatar-${getRandomInteger(1, 6)}.svg`,
     message: getRandomMessage(),
     name: NAMES[getRandomInteger(0, NAMES.length - 1)]
   };

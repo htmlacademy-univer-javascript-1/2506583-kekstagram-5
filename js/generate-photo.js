@@ -4,8 +4,8 @@ import { getRandomInteger } from './util.js';
 function generatePhoto(index){
   return {
     id: index,
-    url: 'photos/${index}.jpg',
-    description: 'Это описание картинки ${index}',
+    url: `photos/${index}.jpg`,
+    description: `Это описание картинки ${index}`,
     likes: getRandomInteger(15, 200),
     comments: getCountComments(),
   }
