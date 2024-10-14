@@ -20,19 +20,19 @@ const MESSAGE = [
 ];
 
 // Функция для генерации случаного 1 или 2 сообщений
-const getRandomMessage = () => {
-  let countMessage = getRandomInteger(1, 2);
+function getRandomMessage(){
+  const countMessage = getRandomInteger(1, 2);
   return countMessage === 2 ? MESSAGE[getRandomInteger(0, MESSAGE.length - 1)] + ' ' +
   MESSAGE[getRandomInteger(0, MESSAGE.length - 1)] : MESSAGE[getRandomInteger(0, MESSAGE.length - 1)];
 }
 
 
-let idSet = new Set();
-let photoIdSet = new Set();
+const idSet = new Set();
+const photoIdSet = new Set();
 
-export function getComment(){
-  let idParam = getRandomInteger(1, 10000);
-  let photoIdParam = getRandomInteger(1, 6);
+function getComment(){
+  const idParam = getRandomInteger(1, 10000);
+  const photoIdParam = getRandomInteger(1, 6);
   while(idSet.has(idParam)){
      idParam = getRandomInteger(1, 10000);
   }
@@ -47,3 +47,5 @@ export function getComment(){
     name: NAMES[getRandomInteger(0, NAMES.length - 1)]
   };
 }
+
+export {getComment}
