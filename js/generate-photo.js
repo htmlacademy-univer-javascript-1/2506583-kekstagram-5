@@ -20,4 +20,4 @@ for (let x = 1; x <= limit; x++ ){
 return commentsArr;
 }
 
-export { generatePhoto }
+export { generatePhoto };
