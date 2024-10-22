@@ -5,4 +5,4 @@ function isMeetingInWorkHours(startTimeOfDay, endTimeOfDay, meetingStartTime, me
   return !(meetingEndTime > end || meetingStartTime < start);
 }
 
-console.log(isMeetingInWorkHours('08:00', '17:30', '14:00', 90));
+isMeetingInWorkHours('08:00', '17:30', '14:00', 90);
