@@ -21,3 +21,4 @@ function getCountComments() {
 }
 
 export { generatePhoto };
+
