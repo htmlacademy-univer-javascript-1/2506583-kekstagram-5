@@ -20,3 +20,10 @@ function renderPhotos(posts) {
 }
 
 export { renderPhotos }
+
+
+
+
+
+
+
