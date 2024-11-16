@@ -1,5 +1,5 @@
 function renderPhotos(posts) {
-  var list = document.querySelector(".pictures");
+  var spisok = document.querySelector(".pictures");
   var template = document.querySelector("#picture").content;
   var newTemplate = template.querySelector(".picture");
   var fragment = document.createDocumentFragment();
@@ -16,7 +16,7 @@ function renderPhotos(posts) {
     fragment.appendChild(templateClone);
   }
 
-  list.appendChild(fragment);
+  spisok.appendChild(fragment);
 }
 
 export { renderPhotos }
