@@ -19,4 +19,5 @@ function renderPhotos(posts) {
   spisok.appendChild(fragment);
 }
 
-export { renderPhotos }
+export { renderPhotos };
+
