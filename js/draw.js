@@ -1,4 +1,4 @@
-function renderPhotos(posts) {
+const renderPhotos = function(posts) {
   const spisok = document.querySelector('.pictures');
   const template = document.querySelector('#picture').content;
   const newTemplate = template.querySelector('.picture');
@@ -9,9 +9,9 @@ function renderPhotos(posts) {
     const urlBlock = templateClone.querySelector('.picture__img');
     urlBlock.src = posts[x].url;
     urlBlock.alt = posts[x].description;
-    let likesBlock = templateClone.querySelector('.picture__likes');
+    const likesBlock = templateClone.querySelector('.picture__likes');
     likesBlock.innerHTML = posts[x].likes;
-    let commentsBlock = templateClone.querySelector('.picture__comments');
+    const commentsBlock = templateClone.querySelector('.picture__comments');
     commentsBlock.innerHTML = posts[x].comments.length;
     fragment.appendChild(templateClone);
   }
