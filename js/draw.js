@@ -1,4 +1,4 @@
-const renderPhotos = function(posts) {
+function renderPhotos(posts) {
   const spisok = document.querySelector('.pictures');
   const template = document.querySelector('#picture').content;
   const newTemplate = template.querySelector('.picture');
