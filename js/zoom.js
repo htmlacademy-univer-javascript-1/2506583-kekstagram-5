@@ -22,7 +22,7 @@ function openBigPicture(event) {
   const comments = JSON.parse(picture.dataset.commentsData);
   commentsList.innerHTML = '';
 
-  comments.forEach(comment => {
+  comments.forEach((comment) => {
     const commentItem = document.createElement('li');
     commentItem.classList.add('social__comment');
 
@@ -44,11 +44,14 @@ function openBigPicture(event) {
     document.body.classList.remove('modal-open');
   });
 
-  document.addEventListener("keydown", function(evt){
-    if(evt.keyCode === 27){
+  function onKeyDown(evt) {
+    if (evt.key === 'Escape') {
       bigPicture.classList.add('hidden');
+      document.body.classList.remove('modal-open');
     }
-  })
+  };
+
+  document.addEventListener("keydown", onKeyDown);
 }
 
 export { openBigPicture };
