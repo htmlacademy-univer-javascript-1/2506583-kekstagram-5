@@ -49,9 +49,9 @@ function openBigPicture(event) {
       bigPicture.classList.add('hidden');
       document.body.classList.remove('modal-open');
     }
-  };
+  }
 
-  document.addEventListener("keydown", onKeyDown);
+  document.addEventListener('keydown', onKeyDown);
 }
 
 export { openBigPicture };
