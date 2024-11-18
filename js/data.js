@@ -1,4 +1,4 @@
-import { getRandomInteger} from './util.js';
+import { getRandomInteger } from './util.js';
 
 const NAMES = [
   'Петя',
@@ -20,30 +20,48 @@ const MESSAGE = [
 ];
 
 // Функция для генерации случаного 1 или 2 сообщений
-const getRandomMessage = () => {
-  let countMessage = getRandomInteger(1, 2);
-  return countMessage === 2 ? MESSAGE[getRandomInteger(0, MESSAGE.length - 1)] + ' ' +
-  MESSAGE[getRandomInteger(0, MESSAGE.length - 1)] : MESSAGE[getRandomInteger(0, MESSAGE.length - 1)];
+function getRandomMessage() {
+  // Генерация случайного числа от 1 до 2
+  const countMessage = getRandomInteger(1, 2);
+
+  let message;
+  if (countMessage === 2) {
+    const firstIndex = getRandomInteger(0, MESSAGE.length - 1);
+    const secondIndex = getRandomInteger(0, MESSAGE.length - 1);
+
+    if (firstIndex !== secondIndex) {
+      message = `${MESSAGE[firstIndex]} ${MESSAGE[secondIndex]}`;
+    } else {
+      message = MESSAGE[firstIndex];
+    }
+  } else {
+    const index = getRandomInteger(0, MESSAGE.length - 1);
+    message = MESSAGE[index];
+  }
+
+  return message;
 }
 
 
-let idSet = new Set();
-let photoIdSet = new Set();
+const idSet = new Set();
+//const photoIdSet = new Set();
 
-export function getComment(){
+function getComment() {
   let idParam = getRandomInteger(1, 10000);
   let photoIdParam = getRandomInteger(1, 6);
-  while(idSet.has(idParam)){
-     idParam = getRandomInteger(1, 10000);
+  while (idSet.has(idParam)) {
+    idParam = getRandomInteger(1, 10000);
   }
-  while(idSet.has(photoIdParam)){
-     photoIdParam = getRandomInteger(1, 6);
+  while (idSet.has(photoIdParam)) {
+    photoIdParam = getRandomInteger(1, 6);
   }
 
   return {
-    id:  getRandomInteger(1, 10000) ,
-    avatar: 'img/avatar-${getRandomInteger(1, 6)}.svg',
+    id: getRandomInteger(1, 10000),
+    avatar: `img/avatar-${getRandomInteger(1, 6)}.svg`,
     message: getRandomMessage(),
     name: NAMES[getRandomInteger(0, NAMES.length - 1)]
   };
 }
+
+export { getComment };
