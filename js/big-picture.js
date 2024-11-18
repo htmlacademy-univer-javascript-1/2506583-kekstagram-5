@@ -35,7 +35,6 @@ const onEscapeKeyDown = (evt) => {
   if (isEscapeKey(evt)) {
     closeBigPicture();
     document.removeEventListener('keydown', onEscapeKeyDown);
-    loadCommentsButton.removeEventListener('click', onLoadCommentsButtonClick);
   }
 };
 
