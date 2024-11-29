@@ -50,7 +50,7 @@ function onDocumentKeyDown(evt){
     evt.preventDefault();
     closeForm();
   }
-};
+}
 
 const onCancelClick = () => closeForm();
 const onInputOverlayClick = () => openForm();
