@@ -37,7 +37,7 @@ function updateEffect(effect){
       start: EFFECTS[effect]['max'],
       step: EFFECTS[effect]['step'],
       connect: 'lower'
-    })
+    });
 
     slider.noUiSlider.on('update', ()=>{
       effectLevelValue['value'] = slider.noUiSlider.get();
@@ -60,8 +60,7 @@ function updateEffect(effect){
           break;
       }
     });
-  }
-  else{
+  } else{
     sliderContainer.classList.add('hidden');
     effectLevelValue['value'] = '';
     previewPicture.style.filter = '';
