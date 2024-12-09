@@ -74,10 +74,4 @@ function updateEffect(effect) {
   }
 }
 
-const onFilterChange = (evt) => {
-  if (evt.target.closest('.effects__item')) {
-    onChangeEffect(evt.target.id);
-  }
-};
-
 export { onChangeEffect, removeFilter };

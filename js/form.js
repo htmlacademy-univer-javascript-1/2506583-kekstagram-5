@@ -19,7 +19,6 @@ const fieldForDescription = document.querySelector('.text__description');
 const cancelButton = form.querySelector('.img-upload__cancel');
 const inputButton = form.querySelector('.img-upload__input');
 const effectsList = document.querySelector('.effects__list');
-const scaleImageValueElement = form.querySelector('.scale__control--value');
 
 const pristine = new Pristine(form, {
   classTo: 'img-upload__field-wrapper',
