@@ -32,14 +32,14 @@ form.addEventListener('submit', async (evt) => {
   evt.preventDefault();
   if (pristine.validate()) {
     await sendData(new FormData(form))
-    .then(() => {
-      showSuccessMessage();
-      removeFilter();
-      resetZoomValue();
-    })
-    .catch(() => {
-      showErrorMessage();
-    })
+      .then(() => {
+        showSuccessMessage();
+        removeFilter();
+        resetZoomValue();
+      })
+      .catch(() => {
+        showErrorMessage();
+      })
     .finally(() => {
       closeForm();
     })
