@@ -35,7 +35,7 @@ const debounce = (callback, timeoutDelay = 500) => {
     // Таким образом цикл «поставить таймаут - удалить таймаут» будет выполняться,
     // пока действие совершается чаще, чем переданная задержка timeoutDelay
   };
-}
+};
 
 const getRandomInt = (val1, val2) => {
   const lower = Math.ceil(Math.min(val1, val2));

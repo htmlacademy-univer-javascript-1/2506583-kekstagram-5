@@ -40,11 +40,11 @@ form.addEventListener('submit', async (evt) => {
       .catch(() => {
         showErrorMessage();
       })
-    .finally(() => {
-      closeForm();
-    })
+      .finally(() => {
+        closeForm();
+      });
   }
-})
+});
 
 const openForm = (evt) =>{
   overlay.classList.remove('hidden');
