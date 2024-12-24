@@ -28,6 +28,17 @@ const pristine = new Pristine(form, {
   errorTextParent: 'img-upload__field-wrapper',
 });
 
+const closeForm = () => {
+  form.reset();
+  pristine.reset();
+  resetZoomValue();
+  overlay.classList.add('hidden');
+  bodyElement.classList.remove('modal-open');
+  document.removeEventListener('keydown', onDocumentKeyDown);
+  effectsList.removeEventListener('click', onChangeEffect);
+  removeFilter();
+};
+
 form.addEventListener('submit', async (evt) => {
   evt.preventDefault();
   if (pristine.validate()) {
@@ -56,17 +67,6 @@ const openForm = (evt) =>{
   effectsPreview.forEach((element) => {
     element.style.backgroundImage = `url('${imageURL}')`;
   });
-};
-
-const closeForm = () => {
-  form.reset();
-  pristine.reset();
-  resetZoomValue();
-  overlay.classList.add('hidden');
-  bodyElement.classList.remove('modal-open');
-  document.removeEventListener('keydown', onDocumentKeyDown);
-  effectsList.removeEventListener('click', onChangeEffect);
-  removeFilter();
 };
 
 const convertTagsList = (string) => string.trim().split(' ').filter((tag) => Boolean(tag.length));
