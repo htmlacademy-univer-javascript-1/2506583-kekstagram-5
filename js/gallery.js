@@ -1,4 +1,4 @@
-import { openBigPicture } from './big-picture.js';
+import { maximazePicture } from './big-picture.js';
 
 const picturesList = document.querySelector('.pictures');
 const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
@@ -11,7 +11,7 @@ const createPictureElement = (picture) => {
   newPicture.querySelector('.picture__comments').textContent = picture.comments.length;
 
   newPicture.addEventListener('click', () => {
-    openBigPicture(picture);
+    maximazePicture(picture);
   });
 
   return newPicture;

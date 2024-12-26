@@ -76,7 +76,7 @@ const onCanselbuttonClick = () => {
   hideBigPicture();
 };
 
-const openBigPicture = (data) => {
+const maximazePicture = (data) => {
   const {url, comments, likes, description} = data;
 
   bigPictureElement.classList.remove('hidden');
@@ -95,4 +95,4 @@ const openBigPicture = (data) => {
 
 canselButtonElement.addEventListener('click', onCanselbuttonClick);
 
-export { openBigPicture };
+export { maximazePicture };
