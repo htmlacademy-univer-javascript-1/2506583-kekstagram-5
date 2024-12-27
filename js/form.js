@@ -5,17 +5,17 @@ import { onChangeEffect, removeFilter} from './effects.js';
 import { showErrorMessage, showSuccessMessage } from './messages.js';
 
 const MAX_TAGS = 5;
+const MAX_DESC = 140;
 const TAGS_PATTERN = /^#[a-zа-яё0-9]{1,19}$/i;
-const MAX_DESC = 40;
 
 const ErrorMessages = {
-  INVALID_COUNT: `Максимум ${MAX_TAGS} хэштегов`,
-  NOT_ORIGINAL: 'Теги не должны повторяться',
+  INVALID_COUNT_TAGS: `Максимум ${MAX_TAGS} хэштегов`,
+  NOT_ORIGINAL_TAG: 'Теги не должны повторяться',
   INVALID_TAG: 'Тег не валиден',
   INVALID_COUNT_DESC: `Максимум ${MAX_DESC} символов!`
 };
 
-const bodyElement = document.querySelector('body');
+const body = document.querySelector('body');
 const form = document.querySelector('.img-upload__form');
 const overlay = document.querySelector('.img-upload__overlay');
 const fieldForHashTages = document.querySelector('.text__hashtags');
@@ -35,7 +35,7 @@ const closeForm = () => {
   pristine.reset();
   resetZoomValue();
   overlay.classList.add('hidden');
-  bodyElement.classList.remove('modal-open');
+  body.classList.remove('modal-open');
   document.removeEventListener('keydown', onDocumentKeyDown);
   effectsList.removeEventListener('click', onChangeEffect);
   removeFilter();
@@ -61,7 +61,7 @@ form.addEventListener('submit', async (evt) => {
 
 const openForm = (evt) =>{
   overlay.classList.remove('hidden');
-  bodyElement.classList.add('modal-open');
+  body.classList.add('modal-open');
   document.addEventListener('keydown', onDocumentKeyDown);
   effectsList.addEventListener('click', onChangeEffect);
   overlay.querySelector('img').src = URL.createObjectURL(evt.target.files[0]);
@@ -94,7 +94,7 @@ const onInputOverlayClick = (evt) => openForm(evt);
 pristine.addValidator(
   fieldForHashTages,
   compareTagsNumber,
-  ErrorMessages.INVALID_COUNT,
+  ErrorMessages.INVALID_COUNT_TAGS,
   1,
   true
 );
@@ -102,7 +102,7 @@ pristine.addValidator(
 pristine.addValidator(
   fieldForHashTages,
   compareOriginalTag,
-  ErrorMessages.NOT_ORIGINAL,
+  ErrorMessages.NOT_ORIGINAL_TAG,
   2,
   true
 );
