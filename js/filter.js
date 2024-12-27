@@ -2,28 +2,26 @@ import { renderPictures } from './gallery.js';
 import { debounce, getRandomElements } from './util.js';
 
 const filterSection = document.querySelector('.img-filters');
-const defaultFilter = document.querySelector('#filter-default');
+const defaultfFilter = document.querySelector('#filter-default');
 const randomFilter = document.querySelector('#filter-random');
-const discussedFilter = document.querySelector('#filter-discussed');
+const popularFilter = document.querySelector('#filter-discussed');
 
 const MAX_PICTURES_COUNT = 10;
-const ACTIVE_CLASS = 'img-filters__button--active';
+const ACTIVE_TAB = 'img-filters__button--active';
 
 const getRandomPictures = (pictures, count) => getRandomElements(pictures, count);
 
-const sortByComments = (a, b) => b.comments.length - a.comments.length;
-const getDiscussedPhotos = (pictures) => [...pictures].sort(sortByComments);
+const sortByComments = (firstPicture, secondPicture) => secondPicture.comments.length - firstPicture.comments.length;
+const getDiscussedPhotos = (pictures) => pictures.slice().sort(sortByComments);
 
-const clearPictures = () => document.querySelectorAll('.picture').forEach((picture) => picture.remove());
+const removePhotos = () => document.querySelectorAll('.picture').forEach((picture) => picture.remove());
 
-const applyFilter = (pictures, filterButton) => {
-  clearPictures();
-  const currentActiveButton = document.querySelector(`.${ACTIVE_CLASS}`);
-  if (currentActiveButton) {
-    currentActiveButton.classList.remove(ACTIVE_CLASS);
-  }
+const changePictures = (pictures, filter) => {
+  removePhotos();
+  const activeFilter = document.querySelector(`.${ACTIVE_TAB}`);
+  activeFilter.classList.remove(ACTIVE_TAB);
   renderPictures(pictures);
-  filterButton.classList.add(ACTIVE_CLASS);
+  filter.classList.add(ACTIVE_TAB);
 };
 
 const showFilteredPictures = (pictures) => {
@@ -31,15 +29,15 @@ const showFilteredPictures = (pictures) => {
   filterSection.classList.remove('img-filters--inactive');
 
   randomFilter.addEventListener('click', debounce(() => {
-    applyFilter(getRandomPictures(pictures, MAX_PICTURES_COUNT), randomFilter);
+    changePictures(getRandomPictures(pictures, MAX_PICTURES_COUNT), randomFilter);
   }));
 
-  discussedFilter.addEventListener('click', debounce(() => {
-    applyFilter(getDiscussedPhotos(pictures), discussedFilter);
+  popularFilter.addEventListener('click', debounce(() => {
+    changePictures(getDiscussedPhotos(pictures), popularFilter);
   }));
 
-  defaultFilter.addEventListener('click', debounce(() => {
-    applyFilter(pictures, defaultFilter);
+  defaultfFilter.addEventListener('click', debounce(() => {
+    changePictures(pictures, defaultfFilter);
   }));
 };
 

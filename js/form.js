@@ -5,17 +5,17 @@ import { onChangeEffect, removeFilter} from './effects.js';
 import { showErrorMessage, showSuccessMessage } from './messages.js';
 
 const MAX_TAGS = 5;
-const MAX_DESC = 40;
 const TAGS_PATTERN = /^#[a-zа-яё0-9]{1,19}$/i;
+const MAX_DESC = 40;
 
 const ErrorMessages = {
   INVALID_COUNT: `Максимум ${MAX_TAGS} хэштегов`,
   NOT_ORIGINAL: 'Теги не должны повторяться',
   INVALID_TAG: 'Тег не валиден',
-  INVALID_DESC_COUNT: `Максимум ${MAX_DESC} символов`
+  INVALID_COUNT_DESC: `Максимум ${MAX_DESC} символов!`
 };
 
-const body = document.querySelector('body');
+const bodyElement = document.querySelector('body');
 const form = document.querySelector('.img-upload__form');
 const overlay = document.querySelector('.img-upload__overlay');
 const fieldForHashTages = document.querySelector('.text__hashtags');
@@ -35,7 +35,7 @@ const closeForm = () => {
   pristine.reset();
   resetZoomValue();
   overlay.classList.add('hidden');
-  body.classList.remove('modal-open');
+  bodyElement.classList.remove('modal-open');
   document.removeEventListener('keydown', onDocumentKeyDown);
   effectsList.removeEventListener('click', onChangeEffect);
   removeFilter();
@@ -61,7 +61,7 @@ form.addEventListener('submit', async (evt) => {
 
 const openForm = (evt) =>{
   overlay.classList.remove('hidden');
-  body.classList.add('modal-open');
+  bodyElement.classList.add('modal-open');
   document.addEventListener('keydown', onDocumentKeyDown);
   effectsList.addEventListener('click', onChangeEffect);
   overlay.querySelector('img').src = URL.createObjectURL(evt.target.files[0]);
@@ -118,7 +118,7 @@ pristine.addValidator(
 pristine.addValidator(
   fieldForDescription,
   compareDescSymbolsNumber,
-  ErrorMessages.INVALID_DESC_COUNT,
+  ErrorMessages.INVALID_COUNT_DESC,
   4,
   true
 );

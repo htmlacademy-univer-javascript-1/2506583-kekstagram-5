@@ -1,10 +1,10 @@
 const EFFECTS = {
-  chrome: { style: 'grayscale', min: 0, max: 1, step: 0.1 },
-  sepia: { style: 'sepia', min: 0, max: 1, step: 0.1 },
-  marvin: { style: 'invert', min: 0, max: 100, step: 1 },
-  phobos: { style: 'blur', min: 0, max: 3, step: 0.1 },
-  heat: { style: 'brightness', min: 1, max: 3, step: 0.1 },
-  none: {}
+  'chrome': {'style': 'grayscale', 'min': 0, 'max': 1, 'step': 0.1},
+  'sepia': {'style': 'sepia', 'min': 0, 'max': 1, 'step': 0.1},
+  'marvin': {'style': 'invert', 'min': 0, 'max': 100, 'step': 1},
+  'phobos': {'style': 'blur', 'min': 0, 'max': 3, 'step': 0.1},
+  'heat': {'style': 'brightness', 'min': 1, 'max': 3, 'step': 0.1},
+  'none': {},
 };
 
 const slider = document.querySelector('.effect-level__slider');
@@ -26,51 +26,51 @@ const removeFilter = () => {
   effectLevelValue.value = '';
 };
 
+
 sliderContainer.classList.add('hidden');
 
-function onChangeEffect(event) {
-  if (event.target.matches('.effects__radio')) {
-    const selectedEffect = event.target.value;
+function onChangeEffect(evt){
+  if (evt.target.matches('.effects__radio')){
+    const button = evt.target;
+    const effect = button['value'];
 
-    if (slider.noUiSlider) {
+    if(slider.noUiSlider){
       slider.noUiSlider.destroy();
     }
-
-    applyEffect(selectedEffect);
+    updateEffect(effect);
   }
 }
 
-function applyEffect(effect) {
-  if (effect === 'none') {
-    removeFilter();
-  } else {
+function updateEffect(effect) {
+  if (effect !== 'none') {
     sliderContainer.classList.remove('hidden');
-
     noUiSlider.create(slider, {
       range: {
-        min: EFFECTS[effect].min,
-        max: EFFECTS[effect].max
+        min: EFFECTS[effect]['min'],
+        max: EFFECTS[effect]['max'],
       },
-      start: EFFECTS[effect].max,
-      step: EFFECTS[effect].step,
-      connect: 'lower'
+      start: EFFECTS[effect]['max'],
+      step: EFFECTS[effect]['step'],
+      connect: 'lower',
     });
 
     slider.noUiSlider.on('update', () => {
       const value = slider.noUiSlider.get();
-
       effectLevelValue.value = value;
-
-      let filterStyle = `${EFFECTS[effect].style}(${value}`;
-
-      if (effect === 'marvin' || effect === 'phobos') {
-        filterStyle += effect === 'marvin' ? '%' : 'px';
+      switch (effect) {
+        case 'marvin':
+          previewPicture.style.filter = `${EFFECTS[effect]['style']}(${value}%)`;
+          break;
+        case 'phobos':
+          previewPicture.style.filter = `${EFFECTS[effect]['style']}(${value}px)`;
+          break;
+        default:
+          previewPicture.style.filter = `${EFFECTS[effect]['style']}(${value})`;
+          break;
       }
-
-      filterStyle += ')';
-
-      previewPicture.style.filter = filterStyle;
     });
+  } else {
+    removeFilter();
   }
 }
 

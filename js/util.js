@@ -1,31 +1,39 @@
-const ERROR_SHOWING_TIME = 5000;
+const ERROR_DISPLAY_TIME = 5000;
 
-const displayAlert = (message) => {
-  const alertBlockElement = document.createElement('div');
-  alertBlockElement.style.zIndex = '100';
-  alertBlockElement.style.position = 'absolute';
-  alertBlockElement.style.left = '0';
-  alertBlockElement.style.top = '0';
-  alertBlockElement.style.right = '0';
-  alertBlockElement.style.padding = '10px 3px';
-  alertBlockElement.style.fontSize = '30px';
-  alertBlockElement.style.textAlign = 'center';
-  alertBlockElement.style.backgroundColor = 'red';
-  alertBlockElement.textContent = message;
-  document.body.append(alertBlockElement);
+const showAlert = (message) => {
+  const alertContainer = document.createElement('div');
+  alertContainer.style.zIndex = '100';
+  alertContainer.style.position = 'absolute';
+  alertContainer.style.left = '0';
+  alertContainer.style.top = '0';
+  alertContainer.style.right = '0';
+  alertContainer.style.padding = '10px 3px';
+  alertContainer.style.fontSize = '30px';
+  alertContainer.style.textAlign = 'center';
+  alertContainer.style.backgroundColor = 'red';
+  alertContainer.textContent = message;
+  document.body.append(alertContainer);
 
   setTimeout(() => {
-    alertBlockElement.remove();
-  }, ERROR_SHOWING_TIME);
+    alertContainer.remove();
+  }, ERROR_DISPLAY_TIME);
 };
 
 const debounce = (callback, timeoutDelay = 500) => {
+  // Используем замыкания, чтобы id таймаута у нас навсегда приклеился
+  // к возвращаемой функции с setTimeout, тогда мы его сможем перезаписывать
   let timeoutId;
 
   return (...rest) => {
+    // Перед каждым новым вызовом удаляем предыдущий таймаут,
+    // чтобы они не накапливались
     clearTimeout(timeoutId);
 
+    // Затем устанавливаем новый таймаут с вызовом колбэка на ту же задержку
     timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
+
+    // Таким образом цикл «поставить таймаут - удалить таймаут» будет выполняться,
+    // пока действие совершается чаще, чем переданная задержка timeoutDelay
   };
 };
 
@@ -52,5 +60,5 @@ const getRandomElements = (arr, count) => {
 
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
-export { getRandomInt, getRandomElements, isEscapeKey, displayAlert, debounce };
+export { getRandomInt, getRandomElements, isEscapeKey, showAlert, debounce };
 

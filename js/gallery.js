@@ -11,7 +11,6 @@ const createPictureElement = (picture) => {
   newPicture.querySelector('.picture__comments').textContent = picture.comments.length;
 
   newPicture.addEventListener('click', () => {
-
     openBigPicture(picture);
   });
 

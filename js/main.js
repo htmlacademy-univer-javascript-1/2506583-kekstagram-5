@@ -1,16 +1,16 @@
 import { showFilteredPictures } from './filter.js';
 import { getData } from './api.js';
-import { displayAlert } from './util.js';
+import { showAlert } from './util.js';
 import './form.js';
 
-const fetchPictures = async () => {
+const loadPictures = async () => {
   try {
     showFilteredPictures(await getData());
-  } catch (error){
-    displayAlert(error);
+  } catch (err){
+    showAlert(err);
   }
 };
 
-fetchPictures();
+loadPictures();
 
 

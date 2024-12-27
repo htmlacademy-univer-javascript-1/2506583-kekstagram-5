@@ -1,6 +1,6 @@
 const SERVER_URL = 'https://29.javascript.htmlacademy.pro/kekstagram';
 
-const PATHS = {
+const ROUTES = {
   GET_DATA:'/data',
   SEND_DATA:'/'
 };
@@ -10,24 +10,24 @@ const HTTP_REQUESTS = {
   POST: 'POST'
 };
 
-const ErrorMessages = {
+const ErrorText = {
   GET_DATA: 'Не удалось загрузить данные с сервера',
   SEND_DATA: 'Не удалось отправить форму'
 };
 
-const loadData = (path, errorMessage, method = HTTP_REQUESTS.GET, body = null) =>
-  fetch(`${SERVER_URL}${path}`, {method, body})
+const loadData = (route, errorText, method = HTTP_REQUESTS.GET, body = null) =>
+  fetch(`${SERVER_URL}${route}`, {method, body})
     .then((response) => {
       if (response.ok){
         return response.json();
       }
     })
     .catch(() => {
-      throw new Error(errorMessage);
+      throw new Error(errorText);
     });
 
-const getData = () => loadData(PATHS.GET_DATA, ErrorMessages.GET_DATA);
+const getData = () => loadData(ROUTES.GET_DATA, ErrorText.GET_DATA);
 
-const sendData = (body) => loadData(PATHS.SEND_DATA, ErrorMessages.SEND_DATA, HTTP_REQUESTS.POST, body);
+const sendData = (body) => loadData(ROUTES.SEND_DATA, ErrorText.SEND_DATA, HTTP_REQUESTS.POST, body);
 
 export {getData, sendData};
