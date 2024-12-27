@@ -6,11 +6,13 @@ import { showErrorMessage, showSuccessMessage } from './messages.js';
 
 const MAX_TAGS = 5;
 const TAGS_PATTERN = /^#[a-zа-яё0-9]{1,19}$/i;
+const MAX_DESC = 40;
 
 const ErrorMessages = {
   INVALID_COUNT: `Максимум ${MAX_TAGS} хэштегов`,
   NOT_ORIGINAL: 'Теги не должны повторяться',
-  INVALID_TAG: 'Тег не валиден'
+  INVALID_TAG: 'Тег не валиден',
+  INVALID_COUNT_DESC: `Максимум ${MAX_DESC} символов!`
 };
 
 const bodyElement = document.querySelector('body');
@@ -72,6 +74,7 @@ const openForm = (evt) =>{
 const convertTagsList = (string) => string.trim().split(' ').filter((tag) => Boolean(tag.length));
 const isOnFocus = () => document.activeElement === fieldForHashTages || document.activeElement === fieldForDescription;
 const compareTagsNumber = (string) => convertTagsList(string).length <= MAX_TAGS;
+const compareDescSymbolsNumber = (string) => string.length <= MAX_DESC;
 const compareOriginalTag = (string) => {
   const lowerString = convertTagsList(string).map((currentTag) => currentTag.toUpperCase());
   return lowerString.length === new Set(convertTagsList(string)).size;
@@ -109,6 +112,14 @@ pristine.addValidator(
   compareValidTag,
   ErrorMessages.INVALID_TAG,
   3,
+  true
+);
+
+pristine.addValidator(
+  fieldForDescription,
+  compareDescSymbolsNumber,
+  ErrorMessages.INVALID_COUNT_DESC,
+  4,
   true
 );
 
