@@ -29,9 +29,9 @@ const debounce = (callback, timeoutDelay = 500) => {
   };
 };
 
-const getRandomInt = (val1, val2) => {
-  const lower = Math.ceil(Math.min(val1, val2));
-  const upper = Math.floor(Math.max(val1, val2));
+const getRandomInt = (value1, value2) => {
+  const lower = Math.ceil(Math.min(value1, value2));
+  const upper = Math.floor(Math.max(value1, value2));
   const result = Math.random() * (upper - lower + 1) + lower;
   return Math.floor(result);
 };
