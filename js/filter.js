@@ -38,7 +38,7 @@ const showFilteredPictures = (pictures) => {
 
   randomFilter.addEventListener('click', () => {
     updateFilter(
-      (pictures) => getRandomPictures(pictures, MAX_RANDOM_PICTURES_COUNT),
+      (photos) => getRandomPictures(photos, MAX_RANDOM_PICTURES_COUNT),
       randomFilter
     );
   });
@@ -48,9 +48,8 @@ const showFilteredPictures = (pictures) => {
   });
 
   defaultFilter.addEventListener('click', () => {
-    updateFilter((pictures) => pictures, defaultFilter);
+    updateFilter((photos) => photos, defaultFilter);
   });
 };
-
 
 export { showFilteredPictures };

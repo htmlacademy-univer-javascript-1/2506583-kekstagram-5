@@ -7,7 +7,7 @@ const EFFECTS = {
   'none': {},
 };
 
-const overlay = document.querySelector('.img-upload__overlay')
+const overlay = document.querySelector('.img-upload__overlay');
 const slider = overlay.querySelector('.effect-level__slider');
 const effectLevelValue = overlay.querySelector('.effect-level__value');
 const previewPicture = overlay.querySelector('.img-upload__preview img');
