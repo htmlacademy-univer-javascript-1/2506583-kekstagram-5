@@ -26,8 +26,8 @@ const createPicturesFragment = (pictures) => {
   return fragment;
 };
 
-const renderPictures = (p) => {
-  const fragment = createPicturesFragment(p);
+const renderPictures = (picture) => {
+  const fragment = createPicturesFragment(picture);
   picturesList.appendChild(fragment);
 };
 

@@ -18,9 +18,10 @@ const ErrorMessages = {
 const loadData = (path, errorMessage, method = HTTP_REQUESTS.GET, body = null) =>
   fetch(`${SERVER_URL}${path}`, {method, body})
     .then((response) => {
-      if (response.ok){
-        return response.json();
+      if (!response.ok){
+        throw new Error();
       }
+      return response.json();
     })
     .catch(() => {
       throw new Error(errorMessage);

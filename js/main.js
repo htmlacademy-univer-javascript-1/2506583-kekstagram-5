@@ -13,4 +13,3 @@ const fetchPictures = async () => {
 
 fetchPictures();
 
-

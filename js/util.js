@@ -53,4 +53,3 @@ const getRandomElements = (arr, count) => {
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
 export { getRandomInt, getRandomElements, isEscapeKey, showAlert, debounce };
-
