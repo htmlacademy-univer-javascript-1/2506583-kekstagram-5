@@ -7,10 +7,11 @@ const EFFECTS = {
   'none': {},
 };
 
-const slider = document.querySelector('.effect-level__slider');
-const effectLevelValue = document.querySelector('.effect-level__value');
-const previewPicture = document.querySelector('.img-upload__preview img');
-const sliderContainer = document.querySelector('.img-upload__effect-level');
+const overlay = document.querySelector('.img-upload__overlay');
+const slider = overlay.querySelector('.effect-level__slider');
+const effectLevelValue = overlay.querySelector('.effect-level__value');
+const previewPicture = overlay.querySelector('.img-upload__preview img');
+const sliderContainer = overlay.querySelector('.img-upload__effect-level');
 
 const removeFilter = () => {
   if (slider.noUiSlider) {
